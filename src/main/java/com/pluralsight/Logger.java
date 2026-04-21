@@ -6,42 +6,32 @@ import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
-    //it will be writting user action to a file name logs.txt
-
-    //I will need to put the year-month-day time and then launch
-    //I will then need to do that same but search : whatever is serached
-    //Keep doing the above until the application stops
-    //date time ... exit (once the user exits)
 
 
 
-    private static LocalDateTime today = LocalDateTime.now();
 
-
-    static DateTimeFormatter Date1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-    static String formatterTime = today.format(Date1);
-
-    public String logg(String searchTerm){
+    //This is the method that will be returning the value based on the input.
+    public String log(String searchTerm){
+        //Here I am making a variabe that keeps track of LocalDateTime
 
 
 
-        if (searchTerm.equalsIgnoreCase("x")) {
-            return formatterTime + " exit \n";
-        }
-        else{
-            return formatterTime + " search : " + searchTerm + "\n";
-        }
+        return formatterTime() + " search : " + searchTerm + "\n";
 
     }
 
-    public static String launchStatement(){
-        return formatterTime + " Launch\n";
+
+    public static String formatterTime(){
+        LocalDateTime today = LocalDateTime.now();
+
+        //Here I am changing the format of it
+        DateTimeFormatter Date1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String formatterTime = today.format(Date1);
+
+        return formatterTime;
     }
 
-    public static String exitMessage(){
-        return formatterTime + ": Exit\n";
-    }
 
 
 

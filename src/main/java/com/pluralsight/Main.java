@@ -10,26 +10,35 @@ public class Main {
     static void main() throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-
         System.out.print("Enter a search term (x) to exit: ");
         String searchTerm = scanner.nextLine();
 
-        FileWriter writer = new FileWriter("logs.txt");
 
+        try{
+            FileWriter writer = new FileWriter("logs.txt");
+            //This will be adding the header of the txt file.
+            writer.write(Logger.formatterTime() + " Launch\n");
+            while(!(searchTerm.equalsIgnoreCase("x"))){
+                Logger l1 = new Logger();
 
-        writer.write(Logger.launchStatement());
+                writer.write(l1.log(searchTerm));
 
-        while(!(searchTerm.equalsIgnoreCase("x"))){
-            Logger l1 = new Logger();
+                System.out.print("Enter a search term (x) to exit: ");
+                searchTerm = scanner.nextLine();
+            }
 
-            writer.write(l1.logg(searchTerm));
+            //Writes the exit message
+            writer.write(Logger.formatterTime() + ": Exit\n");
+            //Closing the file here
+            writer.close();
 
-            System.out.print("Enter a search term (x) to exit: ");
-            searchTerm = scanner.nextLine();
         }
 
-        writer.write(Logger.exitMessage());
-        writer.close();
+        catch(IOException e){
+            e.getMessage();
+        }
+
+
 
 
 
